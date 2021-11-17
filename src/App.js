@@ -1,7 +1,10 @@
+import './styles.css';
+import Routes from './routes';
+
 function App() {
   return (
-    <div>
-      <h1>MyMovieList</h1>
+    <div className="app">
+      <Routes />
     </div>
   );
 }
