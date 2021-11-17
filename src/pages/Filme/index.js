@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './filme-info.css';
 import { useParams, useNavigate } from 'react-router-dom';
 import api from '../../services/api';
+import { toast } from 'react-toastify';
 
 // useHistory foi alterado para useNavigate em alguma versão mais nova do react-router-dom
 // ao inves de history.replace('/'), foi usado navigate('/')
@@ -42,13 +43,28 @@ export default function Filme() {
         const temFilme = filmesSalvos.some((filmeSalvo) => filmeSalvo.id === filme.id);
 
         if (temFilme) {
-            alert('Você já salvou este filme'); 
+            toast.info('Você já salvou esse filme.', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+            });
             return;
         }
 
         filmesSalvos.push(filme);
         localStorage.setItem('filmes', JSON.stringify(filmesSalvos));
-        alert('Filme salvo com sucesso!');
+        toast.success('Filme salvo com sucesso!', {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
     }
 
     if (loading) {
